@@ -53,9 +53,7 @@ def _get_mutual_list_from_api(
             response_data = response.json()["response"]
             mutual_list.extend(response_data)
 
-        query_params["offset"] += VK_CONFIG["target_limit"]
-
-        requests_delta_time = time.time() - start
+        query_params["offset"] += 100
         time.sleep(1)
 
     return mutual_list
@@ -82,7 +80,7 @@ def get_mutual(
 
     requests_count = 1
     if target_uids is not None:
-        target_limit = VK_CONFIG["target_limit"]
+        target_limit = 100
         assert isinstance(target_limit, int)
         requests_count = math.ceil(len(target_uids) / target_limit)
 
